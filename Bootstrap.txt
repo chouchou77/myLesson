@@ -1,0 +1,61 @@
+﻿
+Bootstrap هو إطار عمل للواجهة الأمامية يستخدم لتصميم صفحات الويب والتطبيقات سريعة الاستجابة. يأخذ منهج المحمول أولاً لتطوير الويب ، ويتضمن أنماط وفئات CSS مسبقة الصنع ، بالإضافة إلى بعض وظائف JavaScript..و نحتاج أولا لتضمين ملف bootstrap.css كأي ملف css آخر, و ملف bootstrap.bundle.js.
+من أشهر كلاسات هذا الإطار:
+container-fluid: يضع هوامش بسيطة للعنصر.
+img-responsive: يجعل الصورة متجاوبة مع كل الشاشات.
+text-center: يقوم بحعل النص في الوسط.
+btn: يجعل للزر خصائص جمالية كما يحول اي عنصر إلى زر.
+btn-block: تجعل الزر يشغر كل السطر له.
+btn-default: يحول لون الزر  للإفتراضي 
+btn-primary: يحول لون الزر للون قريب من الازرق. 
+btn-info: للون أزرق فاتح.
+btn-danger: للون قريب من الاحمر.
+btn-warning: للون قريب من الاصفر.
+btn-outline-primary: يجعل الزر بخلفية بيضان و حدود زرقاء و عند النقر عليه يتحول للأزرق.
+يمكن وضع مجموعة من الازرار داخل مجموعة من خلال وضع كل الازرار داخل عنصر بكلاس btn-group.
+text-primary: يجعل النص بهذا اللون.
+text-light: لون ابيض.
+text-center: لوضعه في النصف كما بمكننا وصعه في اليمين او اليسار.
+bg-success: يجعل الخلفية للون قريب من الأخضر.
+bg-secondary: يجعل الخلفيةللون الرمادي.
+bg-dark: لون قريب من الأسود.
+يستعمل bootstrap نظام شبكة متجاوب مكون من12  عمود تختلف حسب حجم الشاشة حيث col-md-4 هذا الكلاس يجعل هذه العنصر يحصل على 4 أعمدة في الشاشات المتوسطة و التي أكبر منها و قبل ذلك وجب وضع كل عناصر الأعمدة داخل عنصر بكلاس row
+للتحكم في مكان كل الاعمدة داخل صف بشكل عمودي نضيف الكلاس للصف: 
+align-items-start: لوضع كل الأعمدة في الأعلى
+align-items-center: كل الأعمدة في النصف
+align-items-end: كل الاعمدة في الأسفل
+أما للتحكم في مكان عمود محدد فنغطيه كلاس:
+align-self-start: لوضع العمود في الاعلى.
+align-self-center:لوضعه في المنتصف .
+align-self-end: لوضعه في الاسفل.
+للتحكم في مكان كل الأعمدة داخل صف بشكل أفقي نضيف الكلاس للصف:
+justify-content-start: لوضع كل العناصر في اليسار
+justify-content-center: في المنتصف.
+justify-content-end: في اليمين
+justify-content-between: العمود الاول في اقصى اليسار و الآخر في أقصى اليمين.
+justify-content-around: مثل السابق لكن يجعل لها حواف.
+الكلاسين ااسابقين يجب ان يكون هناك اعمدة فارغة لتعمل.
+well: يعمل تحديد للأعمدة المحجوزة.
+
+alert ,يجعل العنصر بخصائص فريدة ثم وجب وضع  alert-color في مكان color نستعمل إسم اللون.
+m-1: بمعنى margin في جميع الإتجاهات بقيمة 10px.
+w-10: بمعنى العرض بقيمة 50%.
+لإنشاء البطاقات ننشأ عنصر بكلاس card و داخله صورة بكلاس card-img و عنصر بكلاس card-body لنضع فيه النصوص و الأزرار.
+slideer هو معرض للصور المتتالية لإنشائه ننشأ عنصر بكلاسcarousel slide و معرف عشوائي و خاصية data-bs-ride بقيمة carousel و داخلها عنصر بكلاس carousel-inner و داخله عناصر التي تحتوي على الصور بكلاس carousel-item و إحدها إجعله بكلاس active و داخله صورة.
+و داخل العنصر الرئيسي عنصر بكلاس carousel-indicators داخله عناصر بعدد الصور و خاصية data-bs-target بقيمة المعرف الخاص بالعنصر الرئيسي، و خاصية data-bs-slide-to بقيمة فهارس الصور و أحد العناصر نمنحه كلاس active.
+و داخل العنصر الرئيسي نضيف الكود:
+<button class="carousel-control-prev" type="button" data-bs-target="#carouselExample" data-bs-slide="prev">
+    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Previous</span>
+  </button>
+  <button class="carousel-control-next" type="button" data-bs-target="#carouselExample" data-bs-slide="next">
+    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+    <span class="visually-hidden">Next</span>
+  </button>
+الذي يضيف زرين يقومان بتغيير الصور للتالي او قبل. فقط نستبدل قيمة data-bs-target بقيمة معرف العنصر الرئيسي.
+Dropdown هو قائمة منسدلة لإنشائه ننشأ عنصر رئيسي بكلاس dropdown و داخله زر بكلاس  dropdown-toggleو معرف عشوائي و خاصية data-bs-toggle بقيمة dropdown و داخله عنصر بكلاس dropdown-menu خاصية aria-labelledby بقيمة معرف العنصر الرئيسي و داخله العناصر المسدلة مع كلاس dropdown-item.
+breadcrumbة هو قائمة محتوى الصفحة، ننشأ عنصر كلاس breadcrumb و داخله عناصر بكلاس breadcrumb-item.
+Collapse هو طريقة لإظهار و إخفاء نص، ننشأ نص بكلاس collapse و معرف عشوائي، ثم ننشأ زر بخاصية data-bs-toggle بقيمة collapse و خاصية data-bs-target بقيمة معرف النص.
+navbar لإنشاء واحد إحترافي: ننشأ عنصر بكلاس navbar navbar-expend-lg حيث lg تعني ان النافبار سيختفي عند حجم شاشة اصغر من الكبير و داخله ننشأ عنصر رابط يأخذك الى معرف ننشأه فيما بعد و خاصية data-bs-toggle بقيمة collapse و كلاس navbar-toggler و داخله span بكلاس navbar-toggler-icon و داخل العنصر الرئيسي عنصر بمعرف الذي يذهب اليه عنصر الرابط و كلاس collapse navbar-collapse و داخله عنصر ul مع كلاس navbar-nav داخله عناصر li بكلاس nav-item و داخل كل عنصر عنصر رابط بكلاس nav-link.
+
+ 

@@ -1,0 +1,141 @@
+﻿React هي مكتبة JavaScript شائعة لبناء واجهات مستخدم قابلة لإعادة الاستخدام وقائمة على المكونات لصفحات الويب لإنشاء spa أو تطبيقات الصفحة الواحدة.
+
+تجمع React بين HTML ووظائف JavaScript في لغة الترميز الخاصة بها والتي تسمى JSX. يسهل React أيضًا إدارة تدفق البيانات عبر التطبيق.
+و وجب قبل تنفيذ ملف jsx تحويله إلى js من خلال أداة مثل babel بعد تنزيلها بواسطة npm العمل من خلال سطر الأوامر:
+npx babel App.jsx --presets @babel/preset-react --out-file App.js
+حيث App.jsx هو إسم الملف الذي نريد ان نترجمه و App.js هو إسم الملف الذي تخرج منه مخرجات الملف الأول
+و قبل البدأ نحتاج أولا لتضمين ملفي react.development.js و react-dom.development.js .
+تعتمد react على مبدأ components او المكونات حيث تحفظ داخل متغير او كإرجاع دالة ثم نضيفه بدالة  ReactDOM.render()و تقبل هذه الدالة وسيطتين الاولى هي إسم المكون و الثانية هي الجذر() الذي هو div في الصفحة الرئيسية نضع فيه المكون.و لا ننسى أن الملف يجب ان يكون بامتداد jsx ثم نقوم بتجميعه و نربط ملف html مع ملف js الناتج.مثال عن ملف jsx:
+const comp = <><h1>ReactJs</h1><p>this is component<p/></>
+ReactDOM.render(comp, document.querySelector("#root")
+هنا عرفنا مكونا (component) عبارة عن عنوان و فقرة و من المهم ان نعرف ان مكونات jsx لا تقبل سوى عنصر واحد، في حالتنا اضفنا علامات عنصر فارغة لخداع react.
+بعدها استعملنا هذه الدالة مع المكون الذي صنعناه و #root هو عنصر div في html،
+بعدها نقوم بتجميع هذا الملف و نقوم برطب صفحة html بلمف js المجمع.
+لاستعمال التعليقات في jsx: 
+{/**/}
+في jsx في مكان class نستعمل className، أما العلامات التي توجب علامة إغلاق مثل img,br,hr... فيجب كتابتها:
+<tag />
+و أسماء مكونات react يحب ان تكون CamelCase:
+<MyComo />
+<Name />
+يقبل react طريقتان لبناء مكونات الاولة باستعمال دوال او متغيرات و ثوابت كما سبق ذكره.
+اما لاعطاء كود css من خلال:
+<h1 style={{color: "red",fontSize: 16}}>hello</h1>
+الطريقة الثانية باستعمال كلاس ابن للكلاس الاب React.component ثم اعطاء دالة render التي هي داخله إرجاع بالمكون بالjsx ثم عرضه بدالة ReactDom.render() بشكل jsx:
+class Comp extends React.Component{
+  constructor(prop){
+    super(prop);
+  }
+  render (){
+    return (
+     <div><h1>hello</h1></div>
+    );
+  }
+}
+ReactDOM.render(<Comp />, document.querySelector("#root"));
+إذا اردنا تضمين مجموعة مكونات ننشأ مكونا اساسيا و بعدها نضع داخله المكونات المنشأة حسب نوعها:
+const Co = <p>course</p>
+function Cool() {
+  return (
+    <p>welcom to reactjs</p>
+  );
+}
+class hello extends React.Component {
+  constructor(prop){
+    super(prop)
+  }
+  render() {
+    return (
+      <div>
+        <Cool />
+        Co
+      </div>
+    )
+  }
+}
+ReactDOM.render(<Hello />, document.querySelector("#root"));
+و هنا واضح لمذا نستدعي الممونات بطرق مختلفة.
+طريقة props او الخصائص تستعمل لتمرير بيانات الى مكونات react حيث ننشأ prop مع إنشاء المكون ثم نضع له قيمة اثناء عرضه او اثناء تضمينه داخل مكون آخر :
+function CompProp(prop) {
+  return (
+    <p>welcom to {prop.skill}</p>
+  );
+}
+ReactDOM.render(<CompProp skill="reactjs"/>,document.querySelector("#root"))
+هنا قمنا بوضع تعريف الخاصية بين قوسين متعرجين لأنه كود js. كذلك عند عرض هذه الخاصية إذا كانت قيمته متغير او دالة او مصفوفة... نضعه بين قوسين متعرجين.
+ .اما اثناء إنشاء مكونات عن طريق كلاس فننشأ الخاصية مع إنشاء المكون لكن هذه الخاصية من الكائن this.props عكس الطريقة السابقة التي ننشأ فيها نحن الكائن:
+class MyComp extends React.Component {
+  constructor(props) {
+    super(props)
+  }
+  render() {
+  return (
+    <p>welcom to {this.prop.test}</p>
+  );
+  }
+}
+ReactDOM.render(<MyComp test="react js"/>,document.querySelector("#root"));
+الخصائص الافتراضية تجعل للخصائص قيمة افتراضية اذا لم يحصل على قيمة صحيحة باستعمال الخاصية defaultProps:
+const V = (prop) => {
+ <h1>Hello v</h1>
+}
+V.defaultProps = { item : "test"}
+يمكننا التحقق من نوع البيانات التي تمرر الى خواص المكونات و ذلك باستعمال الخاصية  propTypes و التي يجب استيرادها من prop-types او تضمين ملف prop-types.js:
+const H = (prop) => {
+  return(
+    <h1>Hello {prop.fm}</h1>
+  );
+}
+H.propTypes = {
+  fm : PropTypes.string.inRequired
+}
+ReactDOM.render(<H fm="reactJs"/>,document.querySelector("#root"))
+هنا أنشانا مكونا و اضفنا الخاصية التي تتحقق من القيمة المقدمة للخاصية إذا كلنت string و إذا التحقق من نوع بيانات آخر نغيره بإسم نوع البيانات.
+من أجل تحديث مكونات react نستعمل الخاصية state في constructor لذلك وجب انشاء الكائن عن طريق كلاس:
+class upd extends React.component {
+  constructor(prop){
+    super(prop)
+    this.state = {
+      name : "chihab"
+    }
+  }
+  render(){
+    return (
+      <h1>{this.state.name}</h1>
+    );
+  }
+}
+لتحديث قيمة نستعمل دالة setState التي تقبل كائن ذد زوج مفتاح:قيمة و تكون داخلة دالة التي تتنفذ في حال حصول شرط او ضغط زر او حدوث تغيير...:
+class upd extends React.component {
+  constructor(prop){
+    super(prop)
+    this.state = {
+      name : "chihab"
+    }
+    this.click = this.click.bind(this)
+  }
+  click() {
+    this.setState({
+      name: "haithem"
+    })
+  }
+  render(){
+    return (
+      <button onClick={this.click()} ></button>
+      <h1>hello {this.state.name}</h1>
+    );
+  }
+}
+هذا الكود ينشأ زر عند الضغط عليه تتنفذ دالة، هذه الدالة يحب ربطها اولا بهذا الكلاس بواسطة الكود الاخير في constructor ثم انشاء الدالة اسفله و وضع دالة setState داخلها مع تحديث قيمة الخاصية name .
+عند تحديث القيم يمكننا التحكم في حالة اردنا التحديث ام لا من خلال طريقة shouldComponentUpdate(nextProps, nextState) الذي يقبل هذه الوسيطتان التان تمثلان التغييرات في الخصائص او الحالة و يرجع إما true بمعنى تحديث او false بمعنى عدم تحديث.
+من اجل التحكم في ظهور عنصر او اخفائه بالرجوع الى شرط دون استعمال العبارات الشرطية لانه لا يمكننا استعمالها في jsx:
+{this.state.display === true && <h1>ok</h1>}
+حيث الجزأ الأول هو الشرط الذي على اساسه يظهر او يختفي العنصر و الحزء الثاني (ما بعد &&) هو العنصر.
+
+
+
+
+
+
+
+
